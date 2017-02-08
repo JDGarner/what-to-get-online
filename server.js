@@ -1,24 +1,37 @@
 var express = require('express');
-var webpack = require('webpack');
-var webpackDevMiddleware = require('webpack-dev-middleware');
-var webpackHotMiddleware = require('webpack-hot-middleware');
-var webpackConfig = require('./webpack.config.js');
-
+var path = require('path');
 var app = express();
-var compiler = webpack(webpackConfig);
 
-app.use(express.static(__dirname + '/dist'));
+var isProduction = process.env.NODE_ENV === 'production';
+var port = isProduction ? 3001 : 3000;
 
-app.use(webpackDevMiddleware(compiler, {
-  hot: true,
-  publicPath: webpackConfig.output.publicPath,
-  historyApiFallback: true
-}));
+if (isProduction) {
+  app.use(express.static(__dirname + '/dist'));
 
-app.use(webpackHotMiddleware(compiler));
+  app.get('*', (req, res) => {
+    const dist = path.join(__dirname, '/dist/index.html');
+    res.sendFile(dist);
+  });
+} else {
+  var webpack = require('webpack');
+  var webpackDevMiddleware = require('webpack-dev-middleware');
+  var webpackHotMiddleware = require('webpack-hot-middleware');
+  var webpackConfig = require('./webpack.config.js');
 
-var port = 3000;
-var server = app.listen(port, function(error) {
+  var compiler = webpack(webpackConfig);
+
+  app.use(express.static(__dirname + '/dist'));
+
+  app.use(webpackDevMiddleware(compiler, {
+    hot: true,
+    publicPath: webpackConfig.output.publicPath,
+    historyApiFallback: true
+  }));
+
+  app.use(webpackHotMiddleware(compiler));
+}
+
+app.listen(port, function(error) {
   if (error) throw error;
-  console.log('Example app listening at port ' + port);
+  console.log('Server running on port ' + port);
 });
