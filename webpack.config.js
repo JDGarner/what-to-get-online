@@ -4,7 +4,6 @@ var webpack = require('webpack');
 var config = {
   devtool: 'eval-source-map',
   entry: [
-    'webpack-hot-middleware/client',
     './src/main.js'
   ],
   output: {
@@ -12,18 +11,19 @@ var config = {
     filename: 'bundle.js',
     publicPath: '/'
   },
+  devServer: {
+    inline: true,
+    contentBase: './dist',
+    port: 3000
+  },
   module: {
     loaders: [
       {
         test: /\.js$/,
         include: path.join(__dirname, 'src'),
-        exclude: /node_modules/,
-        loaders: ['babel']
+        loader: 'babel-loader'
       }
     ]
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ]
+  }
 };
 module.exports = config;
