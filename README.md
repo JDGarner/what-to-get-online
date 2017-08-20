@@ -6,21 +6,17 @@ Setup
 
 ```
 npm i
+npm run dev
 ```
 
-
-Usage
----
-
-Start the development server with this command:
+Dev server:
 
 ```
 npm run dev
 ```
 
-Compile
----
-
+Prod Setup:
 ```
-npm run build
+npm run build-prod
+npm start
 ```
