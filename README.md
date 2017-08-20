@@ -6,7 +6,6 @@ Setup
 
 ```
 npm i
-npm run dev
 ```
 
 Dev server:
