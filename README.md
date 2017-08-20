@@ -1,14 +1,11 @@
-React Skeleton App
+What to get Online
 ---
-
-Basic React starter project
-
 
 Setup
 ---
 
 ```
-npm install
+npm i
 ```
 
 
@@ -18,7 +15,7 @@ Usage
 Start the development server with this command:
 
 ```
-npm start
+npm run dev
 ```
 
 Compile
