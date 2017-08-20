@@ -3,18 +3,11 @@ var webpack = require('webpack');
 
 var config = {
   devtool: 'eval-source-map',
-  entry: [
-    './src/main.js'
-  ],
+  entry: './src/main.js',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/'
-  },
-  devServer: {
-    inline: true,
-    contentBase: './dist',
-    port: 3000
   },
   module: {
     loaders: [
@@ -24,6 +17,11 @@ var config = {
         loader: 'babel-loader'
       }
     ]
+  },
+  devServer: {
+    inline: true,
+    contentBase: './dist',
+    port: 3000
   }
 };
 module.exports = config;

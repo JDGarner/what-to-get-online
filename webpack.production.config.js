@@ -2,9 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 var config = {
-  entry: [
-    './src/main.js'
-  ],
+  entry:'./src/main.js',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -15,8 +13,7 @@ var config = {
       {
         test: /\.js$/,
         include: path.join(__dirname, 'src'),
-        exclude: /node_modules/,
-        loaders: ['babel']
+        loader: 'babel-loader'
       }
     ]
   },
