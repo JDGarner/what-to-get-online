@@ -1,6 +1,8 @@
-import React from 'react';
+import React from "react";
+import Category from "./components/category/category";
+import './css/index.scss';
 
-class App extends React.Component {
+export default class App extends React.Component {
   onClickShowMe;
 
   constructor() {
@@ -15,12 +17,13 @@ class App extends React.Component {
     return (
       <div>
         <header>
-          <h2>WhatToGet.Online</h2>
-          <h4>great ideas hand picked from amazon</h4>
+          <h2 className="">WhatToGet.Online</h2>
+          <h4>Great ideas hand picked from amazon</h4>
         </header>
-        <section>
-          Tech Gifts
-        </section>
+        <Category name="Tech" />
+        <Category name="Food" />
+        <Category name="Fun" />
+        <Category name="Home" />
         <footer>
           <button onClick={this.onClickShowMe}>Show Me</button>
         </footer>
@@ -28,4 +31,3 @@ class App extends React.Component {
     );
   }
 }
-export default App;
